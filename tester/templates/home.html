@@ -1,0 +1,84 @@
+﻿{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Home</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<style>
+    body, h1, h5 {
+        font-family: "Raleway", sans-serif
+    }
+
+    body, html {
+        height: 100%
+    }
+
+  
+</style>
+<body>
+
+
+    <div class="bgimg w3-display-container w3-text-white">
+        <div class="w3-display-middle w3-jumbo">
+            <p>logo</p>
+        </div>
+        <div class="w3-display-topleft w3-container w3-xlarge">
+            <p><button onclick="document.getElementById('comment').style.display='block'" class="w3-button w3-black">comment</button></p>
+        </div>
+        
+    </div>
+    
+    
+    <!-- comment Modal -->
+    <div id="comment" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom">
+            <div class="w3-container w3-black">
+                <span onclick="document.getElementById('comment').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+                <h1>Comment</h1>
+            </div>
+            <div class="w3-container">
+                <p>Submit a comment on this url:</p>
+                <form action="/home" method="post">
+                    <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="URL" required name="URL"></p>
+                    <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Comment" required name="Comment"></p>
+
+                    <p><button class="w3-button" type="submit">SEND MESSAGE</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <table style="width:100%">
+       <thead>
+       <tr>
+            <th>userID</th>
+            <th>time</th>
+            <th>comment</th>
+       </tr>
+       </thead>
+
+     <tbody>
+        {% for row in data %}
+            <tr>
+                <td>{{"userID", row[0]}}</td>
+                <td>{{"time", row[1]}}</td>
+                <td>{{"comment", row[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+    </table>
+
+<p> {{ urlID }}!</p>
+
+
+{% endblock %}
+
